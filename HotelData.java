@@ -1,54 +1,90 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
+import java.util.Scanner;
 
-public class HotelData{
+public class HotelData {
 
-private HashMap rooms;
+    private HashMap<Integer, Guest> rooms = new HashMap<Integer, Guest>();
 
-public HotelData(){
+    public HotelData() {
+        loadData();
+    }
 
-}
-public void loadData(){
+    public void loadData() {
+        try (Scanner scan = new Scanner(new File("rooms.txt"))) {
 
-}
+            rooms.put(scan.nextInt(), null);
+            scan.nextLine(); // Flush buffer after the int input
 
-public boolean roomExists(int r){
-    boolean found;
+        } catch (FileNotFoundException e) {
+            System.out.println("File does not exist.");
+        }
+    }
 
-    return found;
-}
+    public boolean roomExists(int r) {
+        boolean found = false;
+        for (Integer i : rooms.keySet()) {
+            if (i == r) {
+                found = true;
+            }
+        }
+        return found;
+    }
 
-public boolean roomAvail(int r){
-    boolean avail;
+    public boolean roomAvail(int r) {
+        boolean avail = false;
+        if (rooms.get(r) == null) {
+            avail = true;
+        }
+        return avail;
+    }
 
-    return avail;
-}
-
-public boolean bookRoom(int r, Guest g){
-    boolean avail;
-
-    return avail;
-}
+    public boolean bookRoom(int r, Guest g) {
+        if (roomExists(r)) {
+            rooms.put(r, g);
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 
 public boolean checkOut(int r){
-    boolean fail
-
-    return fail;
+    try {
+        if (!roomAvail(r)) {
+            throw new NullPointerException("Room does not exist");
+        }
+        rooms.put(r, null);
+        return true;
+    } catch (NullPointerException e) {
+        System.out.println(e);
+        return false;
+    }
 }
 
-public String seeAllRooms(){
-    // TODO
-    return "Rooms";
-}
+    public String seeAllRooms() {
+        return rooms.toString();
+    }
 
-public String seeBookedRooms(){
+    public String seeBookedRooms() {
+        StringBuilder bookedRooms = new StringBuilder();
+        for (Integer i: rooms.keySet()) {
+            if (rooms.get(i) != null) {
+                bookedRooms.append(rooms.get(i).toString());
+            }
+        }
+        if (bookedRooms.isEmpty()) {
+            return "***No rooms are currently booked***";
+        }
+        else{
+            return bookedRooms.toString();
+        }
+    }
 
-    return "Booked Rooms";
-}
-
-@Override
-public String toString() {
-    // TODO Auto-generated method stub
-    return super.toString();
-}
+    @Override
+    public String toString() {
+        return rooms.toString();
+    }
 
 }

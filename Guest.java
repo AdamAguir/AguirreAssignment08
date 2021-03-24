@@ -34,7 +34,6 @@ public class Guest{
 
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
-        return super.toString();
+        return "Guest [fName=" + fName + ", lName=" + lName + ", ccn=" + ccn + "]";
     }
 }
