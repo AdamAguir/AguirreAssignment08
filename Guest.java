@@ -1,17 +1,22 @@
+/**
+ *  @Author: Adam Aguirre
+ *  @Date: 3/28/21
+ *  Assignment 08
+ */
 import java.util.Scanner;
 
-public class Guest{
-    
+public class Guest {
+
     private String fName;
     private String lName;
     private String ccn;
 
-    public Guest(){
+    public Guest() {
         collectData();
     }
 
-    public void collectData(){
-        
+    public void collectData() {
+
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter your first name:");
         setfName(scan.nextLine());
@@ -19,7 +24,7 @@ public class Guest{
         setlName(scan.nextLine());
         System.out.println("Enter your credit card Number:");
         setCcn(scan.nextLine());
-        //scan.close();
+        // scan.close();
 
     }
 
