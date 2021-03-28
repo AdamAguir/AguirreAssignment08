@@ -13,10 +13,13 @@ public class Guest{
     public void collectData(){
         
         Scanner scan = new Scanner(System.in);
-
+        System.out.println("Enter your first name:");
         setfName(scan.nextLine());
+        System.out.println("Enter your last name:");
         setlName(scan.nextLine());
+        System.out.println("Enter your credit card Number:");
         setCcn(scan.nextLine());
+        //scan.close();
 
     }
 

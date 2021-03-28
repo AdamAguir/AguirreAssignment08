@@ -1,4 +1,3 @@
-package Chapter9;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -16,7 +15,7 @@ public class HotelDriver {
 
 		// Customer Interface
 		System.out.println("Welcome to the Hotel California");
-		do {
+		do {	
 			System.out.println("Choose an option:"
 					+ "\n\t1) See all rooms"
 					+ "\n\t2) See booked rooms"
@@ -41,7 +40,7 @@ public class HotelDriver {
 					room = input.nextInt();
 					avail = (data.roomExist(room) && data.roomAvail(room));
 					System.out.println("Room number " + room + " is " + ((avail) ? "Available" : "Not Available"));
-				} while (!avail);	
+				} while (!avail);
 
 				System.out.println("Would you like to book the room(Y/N)?");
 				input.nextLine();  //flush buffer from nextInt;

@@ -1,11 +1,13 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
+import java.util.InputMismatchException;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class HotelData {
 
-    private HashMap<Integer, Guest> rooms = new HashMap<Integer, Guest>();
+    private HashMap<Integer, Guest> rooms;
 
     public HotelData() {
         loadData();
@@ -13,16 +15,18 @@ public class HotelData {
 
     public void loadData() {
         try (Scanner scan = new Scanner(new File("rooms.txt"))) {
-
-            rooms.put(scan.nextInt(), null);
-            scan.nextLine(); // Flush buffer after the int input
-
+           // Iterator<Integer> it = scan.iterator();
+            //while (scan.hasNext()) {
+                rooms = new HashMap<Integer, Guest>();
+                rooms.put(scan.nextInt(), null);
+                scan.nextLine(); // Flush buffer after the int input
+            //}
         } catch (FileNotFoundException e) {
             System.out.println("File does not exist.");
         }
     }
 
-    public boolean roomExists(int r) {
+    public boolean roomExist(int r) {
         boolean found = false;
         for (Integer i : rooms.keySet()) {
             if (i == r) {
@@ -41,7 +45,7 @@ public class HotelData {
     }
 
     public boolean bookRoom(int r, Guest g) {
-        if (roomExists(r)) {
+        if (roomExist(r)) {
             rooms.put(r, g);
             return true;
         }
@@ -60,7 +64,12 @@ public boolean checkOut(int r){
     } catch (NullPointerException e) {
         System.out.println(e);
         return false;
+    } catch (InputMismatchException e){
+        System.out.println(e);
+        return false;
+
     }
+
 }
 
     public String seeAllRooms() {
