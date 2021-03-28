@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class HotelDriver {
 
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) {
 		//Integer[] rooms = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
 		//HashSet<Integer> set = new HashSet<Integer>(Arrays.asList(rooms)); //create Hashset out of array
 		Scanner input = new Scanner(System.in);
